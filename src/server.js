@@ -40,8 +40,6 @@ const shortenURL = (db, url) => {
 
 const checkIfShortIdExists = (db, code) => db.collection('shortenedURLs')
   .findOne({ short_id: code });
-  
-const getAll = (db) => 
 
 app.get('/', (req, res) => {
   const htmlPath = path.join(__dirname, 'public', 'index.html');
@@ -75,10 +73,9 @@ app.post('/new', (req, res) => {
 });
 
 app.get('/allInDatabase', (req, res) => {
-  //const shortId = req.params.short_id;
 
   const { db } = req.app.locals;
-  //console.log(db);
+
   db.collection('shortenedURLs').find({})
 	.toArray(function(err, result) {
 		if (err) throw err;
